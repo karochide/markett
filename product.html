@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        html,
+        body {
+            position: relative;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: linear-gradient(to bottom, #4facfe, #00f2fe);
+            color: #fff;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .swiper {
+            width: 80%;
+            max-width: 800px;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .swiper-slide {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .swiper-pagination-bullet {
+            background: #fff;
+            opacity: 0.7;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .swiper-pagination-bullet-active {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .swiper-slide-shadow-left,
+        .swiper-slide-shadow-right {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tovar nomi: <span id="nomi"></span></h1>
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <!-- Swiper slides will be added here dynamically -->
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        // Example data: replace this with your localStorage data or backend data
+        const phones = [
+            {
+                id: 6,
+                nomi: "Redmi Note 8",
+                narxi: 200,
+                brend: "Redmi",
+                rasmi: [
+                    "https://olcha.uz/image/original/products/2021-06-12/xiaomi-redmi-note-8-464gb-2021-24077-1.jpeg",
+                    "https://olcha.uz/image/original/products/2021-06-12/xiaomi-redmi-note-8-464gb-2021-24077-1.jpeg",
+                    "https://olcha.uz/image/original/products/2021-06-12/xiaomi-redmi-note-8-464gb-2021-24077-1.jpeg"
+                ]
+            }
+        ];
+
+        document.addEventListener("DOMContentLoaded", () => {
+            let urlString = window.location.search;
+            let urlParams = new URLSearchParams(urlString);
+            let id = urlParams.get("id");
+
+            // Find the product by id
+            let product = phones.find(t => t.id == id);
+            if (product) {
+                // Set product name
+                let nomi = document.querySelector("#nomi");
+                nomi.innerHTML = product.nomi;
+
+                // Initialize swiper
+                var swiper = new Swiper(".mySwiper", {
+                    effect: "coverflow",
+                    grabCursor: true,
+                    centeredSlides: true,
+                    slidesPerView: "auto",
+                    coverflowEffect: {
+                        rotate: 50,
+                        stretch: 0,
+                        depth: 100,
+                        modifier: 1,
+                        slideShadows: true,
+                    },
+                    pagination: {
+                        el: ".swiper-pagination",
+                    },
+                });
+
+                // Loop through all images and add them to the Swiper
+                product.rasmi.forEach(rasmcha => {
+                    let swiperDiv = document.createElement("div");
+                    swiperDiv.classList.add("swiper-slide");
+                    swiperDiv.innerHTML = `<img src="${rasmcha}" />`;
+                    document.querySelector(".swiper-wrapper").append(swiperDiv);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+</head>
+
+<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+      aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="iphonake.html">iPhone</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="samsung.html">Samsung</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="nokia.html">Nokia</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="redmi.html">Redmi</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="poco.html">Poco</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="create.html">Create</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" style="width: 300px;" id="search" type="search" placeholder="Search"
+          aria-label="Search">
+      </form>
+      <div class="auth d-flex align-items-center">
+        <a class="btn btn-outline-light m-2" href="/signIn.html">Sign In</a>
+        <a class="btn btn-outline-light m-2" href="./signup.html">Sign Up</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<body>
+  <div class="container">
+    <div class="row">
+
+    </div>
+  </div>
+  <script>document.addEventListener("DOMContentLoaded", function (e) {
+      let row = document.querySelector(".row");
+
+      phones.forEach((tel) => {
+        if (tel.brend === "Nokia") {
+          let div = document.createElement("div");
+            div.classList.add("col-3", "mt-2");
+            div.innerHTML = `
+                <div class="card">
+                    <img src="${tel.rasmi[0]}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${tel.nomi}</h5>
+                        <p class="card-text">${tel.narxi} $</p>
+                        <a href="product.html?id=${tel.id}                                
+                                  " class="btn btn-primary">Buy</a>
+                    </div>
+                </div>
+            `;
+          row.append(div);
+        }
+      });
+    });
+    
+  </script>
+
+
+
+  <script src="script.js"></script>
+  <script src="karichide.js"></script>
+
+</body>
+
+</html>
